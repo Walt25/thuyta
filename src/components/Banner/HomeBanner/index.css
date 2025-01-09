@@ -1,0 +1,47 @@
+.home-banner {
+  position: relative;
+}
+.home-banner .slick-slider {
+  height: 120vh; /* Chiều cao của slider bằng chiều cao màn hình */
+}
+.home-banner .slick-slide {
+  display: flex; /* Đảm bảo nội dung trong slide được căn giữa */
+  justify-content: center;
+  align-items: center;
+}
+
+.slick-next:before {
+  content: "";
+}
+
+.slick-prev:before {
+  content: "";
+}
+
+.home-banner .slick-dots {
+  bottom: 200px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.home-banner .slick-dots li button:before {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 1);
+  opacity: 1;
+}
+
+.home-banner .slick-dots li.slick-active button:before {
+  color: #c75d15;
+}
+
+.hidden-on-small {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hidden-on-small {
+    display: none !important;
+  }
+}

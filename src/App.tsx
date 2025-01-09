@@ -1,7 +1,6 @@
-import "./App.css";
+import useRouteElements from "./useRouteElements";
 
-function App() {
-  return <h1 className="text-3xl font-bold underline"></h1>;
+export default function App() {
+  const routeElement = useRouteElements();
+  return <div>{routeElement}</div>;
 }
-
-export default App;
