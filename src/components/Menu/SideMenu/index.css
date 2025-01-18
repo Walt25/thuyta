@@ -1,0 +1,30 @@
+/* Container menu */
+
+/* Thanh cuộn mỏng */
+.slick-list {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #aaa #ddd;
+}
+
+.slick-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.slick-list::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 10px;
+}
+
+/* Ẩn các nút trái/phải của Slick */
+.slick-prev,
+.slick-next {
+  display: none !important;
+}
+
+/* Đảm bảo các slide xếp dọc */
+.slick-slide {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,20 @@
+.gift-banner {
+  position: relative;
+  height: 218px;
+}
+.gift-banner .slick-slider {
+  height: 218px; /* Chiều cao của slider bằng chiều cao màn hình */
+}
+.gift-banner .slick-slide {
+  height: 218px; /* Mỗi slide cũng phải có chiều cao bằng màn hình */
+  display: flex; /* Đảm bảo nội dung trong slide được căn giữa */
+  justify-content: center;
+  align-items: center;
+}
+.gift-banner .slick-next:before {
+  content: "";
+}
+
+.gift-banner .slick-prev:before {
+  content: "";
+}
