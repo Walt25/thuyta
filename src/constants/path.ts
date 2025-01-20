@@ -1,9 +1,12 @@
 const path = {
   home: "/",
   menu: "/menu",
-  lotus_hall: "/lotus-hall",
-  dragon_boat: "/dragon-boat",
-  golden_lotus_hall: "/golden-lotus-hall",
+  nganSen: "/ngan-sen",
+  thuyenRong: "/thuyen-rong",
+  hoangKimSen: "/hoang-kim-sen",
+  thanhSen: "thanh-sen",
+  conferenceRoom: "/hoi-nghi",
+  promotion: "/khuyen-mai",
 };
 
 export default path;

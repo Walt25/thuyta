@@ -1,11 +1,47 @@
-
+import { DownOutlined } from "@ant-design/icons";
+import { Dropdown, MenuProps, Space } from "antd";
 import classNames from "classnames";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface Props {
-  type: "white" | "black"
+  type: "white" | "black";
 }
+
+const items: MenuProps["items"] = [
+  {
+    key: "1",
+    label: (
+      <a target="_blank" rel="noopener noreferrer" href="/thuyen-rong">
+        Thuyền rồng Hoàng Long - Kim Long
+      </a>
+    ),
+  },
+  {
+    key: "2",
+    label: (
+      <a target="_blank" rel="noopener noreferrer" href="/ngan-sen">
+        Sảnh ngân sen
+      </a>
+    ),
+  },
+  {
+    key: "3",
+    label: (
+      <a target="_blank" rel="noopener noreferrer" href="/hoang-kim-sen">
+        Sảnh Hoàng Sen - Kim sen
+      </a>
+    ),
+  },
+  {
+    key: "4",
+    label: (
+      <a target="_blank" rel="noopener noreferrer" href="/thanh-sen">
+        Sảnh thanh sen
+      </a>
+    ),
+  },
+];
 
 export default function Header({ type }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -94,14 +130,20 @@ export default function Header({ type }: Props) {
           </button>
         </div>
         <div
-          className={`${isMenuOpen ? "block" : "hidden"
-            } md:flex justify-between items-center w-full md:w-auto md:order-1`}
+          className={`${
+            isMenuOpen ? "block" : "hidden"
+          } md:flex justify-between items-center w-full md:w-auto md:order-1`}
           id="mobile-menu-3"
         >
-          <ul className={classNames("flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium", {
-            "text-white": type === "white",
-            "text-gray-900": type === "black"
-          })} >
+          <ul
+            className={classNames(
+              "flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium",
+              {
+                "text-white": type === "white",
+                "text-gray-900": type === "black",
+              }
+            )}
+          >
             <li>
               <a
                 href="#"
@@ -112,12 +154,14 @@ export default function Header({ type }: Props) {
               </a>
             </li>
             <li>
-              <a
-                href="#"
-                className=" hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
-              >
-                Sảnh tiệc
-              </a>
+              <Dropdown menu={{ items }}>
+                <a onClick={(e) => e.preventDefault()}>
+                  <Space>
+                    Sảnh tiệc
+                    <DownOutlined />
+                  </Space>
+                </a>
+              </Dropdown>
             </li>
             <li>
               <a
