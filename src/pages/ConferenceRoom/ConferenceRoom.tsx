@@ -1,175 +1,236 @@
 import React from "react";
 import { ConfigProvider, Table } from "antd";
-import { ColumnsType } from "antd/es/table";
+import type { ColumnsType } from "antd/es/table";
 
-interface DataType {
-  key: React.Key;
-  gift: string;
-  range15_20?: string;
-  range21_26?: string;
-  range27_32?: string;
-  range33_42?: string;
-  range43_50?: string;
-  range51_65?: string;
+// Interface định nghĩa kiểu dữ liệu
+interface RoomData {
+  id: React.Key;
+  name: string;
+  size: string;
+  theaterCapacity: string;
+  roundTableCapacity: number;
+  halfDayPrice: string;
+  fullDayPrice: string;
+  remarks?: string;
 }
 
-const columns: ColumnsType<DataType> = [
+// Cấu hình cột cho bảng
+const roomColumns: ColumnsType<RoomData> = [
   {
-    title: "Quà tặng",
-    dataIndex: "gift",
-    key: "gift",
-    fixed: "left",
-    width: 200,
+    title: "Tên phòng",
+    dataIndex: "name",
+    key: "name",
   },
   {
-    title: "Số bàn đặt chính thức",
+    title: "Diện tích (m²)",
+    dataIndex: "size",
+    key: "size",
+  },
+  {
+    title: "Sức chứa kiểu rạp hát",
+    dataIndex: "theaterCapacity",
+    key: "theaterCapacity",
+    width: 150,
+  },
+  {
+    title: "Kiểu bàn tròn (10 khách/bàn)",
+    dataIndex: "roundTableCapacity",
+    key: "roundTableCapacity",
+    width: 150,
+  },
+  {
+    title: "Công suất phòng",
     children: [
       {
-        title: "15-20",
-        dataIndex: "range15_20",
-        key: "range15_20",
-        width: 100,
+        title: "Giá thuê nửa ngày (VNĐ)",
+        dataIndex: "halfDayPrice",
+        key: "halfDayPrice",
+        render: (value, record) => {
+          if (record.halfDayPrice === "-" && record.fullDayPrice === "-") {
+            return {
+              children: (
+                <span className="font-semibold text-black">
+                  Chỉ phục vụ set menu
+                </span>
+              ),
+              props: { colSpan: 3 }, // Gộp cột "Nửa ngày", "Nguyên ngày" và "Ghi chú"
+            };
+          }
+          return value ? `${value} VND` : "-";
+        },
       },
       {
-        title: "21-26",
-        dataIndex: "range21_26",
-        key: "range21_26",
-        width: 100,
+        title: "Giá thuê nguyên ngày (VNĐ)",
+        dataIndex: "fullDayPrice",
+        key: "fullDayPrice",
+        render: (value, record) => {
+          if (record.halfDayPrice === "-" && record.fullDayPrice === "-") {
+            return { props: { colSpan: 0 } }; // Ẩn cột nếu đã gộp
+          }
+          return value ? `${value} VND` : "-";
+        },
       },
+    ],
+  },
+
+  {
+    title: "Ghi chú",
+    dataIndex: "remarks",
+    key: "remarks",
+    width: 200,
+    render: (text, record, index) => {
+      if (index === 0) {
+        return {
+          children: (
+            <div className="font-bold">
+              Đặt menu tiệc giảm 50% giá thuê phòng (với số lượng khách tiệc
+              tương đương khách hội nghị)
+            </div>
+          ),
+          props: { colSpan: 1, rowSpan: 5 },
+        };
+      }
+      return { props: { colSpan: 0 } };
+    },
+  },
+];
+
+const promotionColumns = [
+  {
+    title: "Khuyến mãi", // Tiêu đề chính
+    children: [
+      { title: "Màn hình LED", key: "1", render: () => <div></div> },
+      { title: "Bàn lễ tân", key: "2", render: () => <div></div> },
+      { title: "Bục phát biểu", key: "3", render: () => <div></div> },
       {
-        title: "27-32",
-        dataIndex: "range27_32",
-        key: "range27_32",
-        width: 100,
-      },
-      {
-        title: "33-42",
-        dataIndex: "range33_42",
-        key: "range33_42",
-        width: 100,
-      },
-      {
-        title: "43-50",
-        dataIndex: "range43_50",
-        key: "range43_50",
-        width: 100,
-      },
-      {
-        title: "51-65",
-        dataIndex: "range51_65",
-        key: "range51_65",
-        width: 100,
+        title: "Âm thanh, 2 micro",
+        key: "4",
+        render: () => <div></div>,
       },
     ],
   },
 ];
 
-const dataSource: DataType[] = [
+// Dữ liệu bảng
+const roomData: RoomData[] = [
   {
-    key: "1",
-    gift: "Liễn hồng, bút ký tên, kệ ảnh, thúng hỷ",
+    id: "1",
+    name: "Hoàng Kim Sen",
+    size: "1.035",
+    theaterCapacity: "1.000 khách",
+    roundTableCapacity: 85,
+    halfDayPrice: "40.000.000",
+    fullDayPrice: "70.000.000",
+    remarks: "Đặt menu tiệc giảm 50% giá thuê",
   },
   {
-    key: "2",
-    gift: "Tháp ly, 2 chai Champagne, đá khói",
+    id: "2",
+    name: "Hoàng Sen",
+    size: "667",
+    theaterCapacity: "500 khách",
+    roundTableCapacity: 50,
+    halfDayPrice: "25.000.000",
+    fullDayPrice: "45.000.000",
   },
   {
-    key: "3",
-    gift: "Khăn ăn, hoa tươi để bàn, khăn lạnh",
+    id: "3",
+    name: "Kim Sen",
+    size: "368",
+    theaterCapacity: "250 khách",
+    roundTableCapacity: 28,
+    halfDayPrice: "15.000.000",
+    fullDayPrice: "30.000.000",
   },
   {
-    key: "4",
-    gift: "Ban nhạc hòa tấu (2 nhạc công)",
+    id: "4",
+    name: "Thanh Sen",
+    size: "860",
+    theaterCapacity: "750 khách",
+    roundTableCapacity: 62,
+    halfDayPrice: "30.000.000",
+    fullDayPrice: "60.000.000",
   },
   {
-    key: "5",
-    gift: "Thức ăn nhẹ đầu giờ Cô Dâu Chú Rể",
+    id: "5",
+    name: "Ngân Sen",
+    size: "402",
+    theaterCapacity: "500 khách",
+    roundTableCapacity: 37,
+    halfDayPrice: "20.000.000",
+    fullDayPrice: "40.000.000",
   },
   {
-    key: "6",
-    gift: "Đậu phộng đầu giờ",
+    id: "6",
+    name: "Thuyền Kim Long",
+    size: "162",
+    theaterCapacity: "-",
+    roundTableCapacity: 14,
+    halfDayPrice: "-",
+    fullDayPrice: "-",
+    remarks: "Chỉ phục vụ set menu",
   },
   {
-    key: "7",
-    gift: "Nước ngọt, nước suối suốt tiệc (phục vụ rót bình)",
+    id: "7",
+    name: "Thuyền Hoàng Long",
+    size: "179",
+    theaterCapacity: "-",
+    roundTableCapacity: 16,
+    halfDayPrice: "-",
+    fullDayPrice: "-",
+    remarks: "Chỉ phục vụ set menu",
   },
-  {
-    key: "8",
-    gift: "MC tiếng Việt đầu giờ",
-  },
-  {
-    key: "9",
-    gift: "Thiệp cưới theo mẫu (chưa in nội dung)",
-  },
-  {
-    key: "10",
-    gift: "Pháo kim tuyến (4 viên)",
-  },
-  {
-    key: "11",
-    gift: "Bánh cưới 4 giả 1 thật",
-  },
-  {
-    key: "12",
-    gift: "Thiệp cưới theo mẫu (có in nội dung)",
-  },
-  {
-    key: "13",
-    gift: "Saxo + 2 Ca sĩ",
-  },
-  {
-    key: "14",
-    gift: "Máy chiếu Album hoặc màn hình Led",
-  },
-  {
-    key: "15",
-    gift: "Đội múa khai tiệc",
-  },
-  {
-    key: "16",
-    gift: "Máy quay trực tiếp",
-  },
-  {
-    key: "17",
-    gift: "Bàn ăn gia đình",
-  },
-  {
-    key: "18",
-    gift: "Giảm giá chương trình nghi lễ đặc biệt",
-  },
-  // Add more rows as needed
 ];
 
-export default function ConferenceRoom() {
+// Component chính
+const ConferenceRoom: React.FC = () => {
   return (
-    <div className="container">
-      <div className="w-[70%] mx-auto flex flex-col gap-2">
-        <img
-          className="w-full"
-          src="https://s3-alpha-sig.figma.com/img/bd55/bc12/07c919d25c94024fab5080ecdbf7c2eb?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=nTtvwi8xFVNnlLe~f1Rq-AEtza7qVRL43TE7Xrm5c~~VnNeOg33MxkPeNeyXh4qcarKhTPYtXV7AWtwnHij7T0Sxw20tQWFsrYgjr2W3WEBTnFRhYkd6XBd824RzCHSHigKgfe-JwN6ovAIAZgmksrWrPbuNlh-gRBxyPNp-HkLkLm4gE486XVM7DvqUZfPBuYu6BqQaQR5y~cqMSa3yF5ZoKCrHlUybPtLvEx-aLVL5uKjlY5jQ3kafRnwNPA0Xxi~rqaApXsvMfr2KrqXOPWJw5qDYVjKbO8uWV5UH7PAMdFumiKsaPHhrOjBHikzjVhVLC3eXM-xYQss35xNXHA__"
-        />
-        <div className="">
-          <ConfigProvider
-            theme={{
-              components: {
-                Table: {
-                  borderColor: "#C2C2C2",
-                  headerColor: "#c75d15",
-                  headerBg: "#ffeed7",
-                },
-              },
-            }}
-          >
-            <Table
-              columns={columns}
-              dataSource={dataSource}
-              bordered
-              pagination={false}
-              scroll={{ x: "max-content" }}
-            />
-          </ConfigProvider>
-        </div>
+    <div className="p-4 mb-[30px]">
+      <div className="text-[#ed7d31] text-[32px] font-bold font-['Manrope'] ">
+        Giá cho thuê phòng hội nghị
       </div>
+      <div className="text-[#666666] text-xl font-normal font-['Manrope'] mb-[30px]">
+        (Đã bao gồm 10% thuế VAT)
+      </div>
+      <ConfigProvider
+        theme={{
+          components: {
+            Table: {
+              borderColor: "#C2C2C2",
+              headerColor: "#c75d15",
+              headerBg: "#ffeed7",
+            },
+          },
+        }}
+      >
+        <Table
+          columns={roomColumns}
+          dataSource={roomData}
+          bordered
+          pagination={false}
+          scroll={{ x: "max-content" }}
+        />
+      </ConfigProvider>
+      <ConfigProvider
+        theme={{
+          components: {
+            Table: {
+              borderColor: "#C2C2C2",
+              headerColor: "#c75d15",
+              headerBg: "#ffeed7",
+            },
+          },
+        }}
+      >
+        <Table
+          columns={promotionColumns}
+          dataSource={[]}
+          bordered
+          pagination={false}
+          scroll={{ x: "max-content" }}
+        />
+      </ConfigProvider>
     </div>
   );
-}
+};
+
+export default ConferenceRoom;

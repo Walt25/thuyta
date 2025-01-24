@@ -1,4 +1,5 @@
 import { Watch } from "../../components/Icons/Icons";
+import path from "../../constants/path";
 
 export default function HoangKimSenHall() {
   return (
@@ -118,70 +119,73 @@ export default function HoangKimSenHall() {
           Các sảnh tiệc khác
         </div>
         <div className="flex gap-2 w-full h-[300px]">
-          <div className="flex-grow h-full ">
-            <div className="h-[200px] overflow-hidden">
+          <a href={`/${path.thuyenRong}`} className="flex-grow  h-full ">
+            <div className="h-[300px] overflow-hidden">
               <img
-                className="w-full h-[250px] object-top scale-200"
+                className="w-full   object-top "
                 src="https://s3-alpha-sig.figma.com/img/409d/e74c/ef87213b68881562732ff1e7430e2338?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ijVQo0T-x5xdsY0P5R9VAI6MWHUNVB6msnkz68XpUDRNWOfFNP1tJS86bNffWRtD-qeFOlj514ItW4Tl9qks0xn5sZECYz9l9qvXvTFXdqLXVemxLOWXBS6c6i-02HyL5fvyU9nvt0CxbSUsWQM6tPk6OLedU-98-DdmU625UroyfR7v3ojZHhJCX9-7N1o6N4YzxbfJfqHldGMuh0lvR1Kwkc2LGtigFTAibdBqGOwFxeaO73nIc5j6yZC-1IL6N~DNh0ckSb3JyvG8Yvd5fmKUwCQpS1Lu5FqHnpQoFFDaQAinHo6B1Q-cpQ6g9ukRzPjlpV7YQAcEh9zXOlMIpg__"
               />
-            </div>
-            <div className="flex justify-between">
-              <div className=" text-[#c75d15] text-sm font-bold font-['Manrope'] leading-[22.86px]">
-                Thuyền rồng Kim Long -<br></br>
-                <span>Hoàng Long</span>{" "}
-              </div>
-              <div className="flex gap-1">
-                <span>
-                  <Watch></Watch>
-                </span>
-                <div className="text-right text-[#666666] text-base font-normal font-['Manrope'] leading-normal">
-                  11/02/2020
+              <div className="flex flex-wrap justify-between">
+                <div className=" text-[#c75d15] text-sm font-bold font-['Manrope'] leading-[22.86px]">
+                  Thuyền rồng Kim Long -<br></br>
+                  <span>Hoàng Long</span>
+                </div>
+                <div className="flex gap-1">
+                  <span>
+                    <Watch></Watch>
+                  </span>
+                  <div className="text-right text-[#666666] text-sm font-normal font-['Manrope'] leading-normal">
+                    11/02/2020
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="flex-grow h-full ">
-            <div className="h-[200px] overflow-hidden">
+          </a>
+
+          <a href={`/${path.hoangKimSen}`} className="flex-grow  h-full ">
+            <div className="h-[300px] overflow-hidden">
               <img
-                className="w-full h-[250px] object-top scale-200"
-                src="https://s3-alpha-sig.figma.com/img/f798/8a69/52ed3f30cab6eff8d9a889bf7dc6986c?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fW514fGbUGisQgMOXXAdE9BQ9b~Q34APIpT6iPbtE1ER8gakECiJBKJLRODFT6bWpYgAMxgnBFGmi6jI5nrICL~g3K34Cf254pr14EkdmyiUf618K9MORn-ja6TrGj2hmOiSp1mw6Zg6ob9jU1rVi9xGab6MZGWQRHS21D2WzPLampEJ4ZE3CEPwQvxe-Nl2jT39ei27lhRPhtYObSvmfhYB8UVAHlMWLNk8Y928sccNWvQQVlZHdbaxi5AtVK~q1nexFwvIzH78kQ6nB~oOFjGCZmjpUysj8xHQcfauz~w8KUqA83qgCOAC~lvCIa0rbuV0r5GqppGWFAdK3anT9g__"
+                className="w-full  object-top "
+                src="https://s3-alpha-sig.figma.com/img/409d/e74c/ef87213b68881562732ff1e7430e2338?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ijVQo0T-x5xdsY0P5R9VAI6MWHUNVB6msnkz68XpUDRNWOfFNP1tJS86bNffWRtD-qeFOlj514ItW4Tl9qks0xn5sZECYz9l9qvXvTFXdqLXVemxLOWXBS6c6i-02HyL5fvyU9nvt0CxbSUsWQM6tPk6OLedU-98-DdmU625UroyfR7v3ojZHhJCX9-7N1o6N4YzxbfJfqHldGMuh0lvR1Kwkc2LGtigFTAibdBqGOwFxeaO73nIc5j6yZC-1IL6N~DNh0ckSb3JyvG8Yvd5fmKUwCQpS1Lu5FqHnpQoFFDaQAinHo6B1Q-cpQ6g9ukRzPjlpV7YQAcEh9zXOlMIpg__"
               />
-            </div>
-            <div className="flex justify-between">
-              <div className=" text-[#c75d15] text-sm font-bold font-['Manrope'] leading-[22.86px]">
-                Sảnh Hoàng Sen - Kim Sen
-              </div>
-              <div className="flex gap-1">
-                <span>
-                  <Watch></Watch>
-                </span>
-                <div className="text-right text-[#666666] text-base font-normal font-['Manrope'] leading-normal">
-                  11/02/2020
+              <div className="flex flex-wrap justify-between">
+                <div className=" text-[#c75d15] text-sm font-bold font-['Manrope'] leading-[22.86px]">
+                  Sảnh Hoàng Sen -<br></br>
+                  <span>Kim Sen</span>{" "}
+                </div>
+                <div className="flex gap-1">
+                  <span>
+                    <Watch></Watch>
+                  </span>
+                  <div className="text-right text-[#666666] text-sm font-normal font-['Manrope'] leading-normal">
+                    11/02/2020
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="flex-grow h-full ">
-            <div className="h-[200px] overflow-hidden">
+          </a>
+
+          <a href={`/${path.thuyenRong}`} className="flex-grow  h-full ">
+            <div className="h-[300px] overflow-hidden">
               <img
-                className="w-full h-[250px] object-top scale-200"
-                src="https://s3-alpha-sig.figma.com/img/80ca/2127/d4f78cb78bdd31b5d81533f7a70770ff?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=T5eUuMohN4QkFnMhcNitGE8ZqG5qMqJoFpYPOMC5MaAMXUOC8fIXJM5PD~EkfZN9nFT9xyAOtQM0kBLN2Afcg68-7-FPXYzXQH3psOVx2WpVoiEpqIdo3epmLg~n5pcMKk5JgM8wbtpUoAA4x2EeZrL5Dm3oaROOK2IEhg-wPGDvKmm2KoBFA3PMCFOleYhqlpLMeFO1kbvFsgEqvZAW5VXva2WR5LHqGDemE-Btf6Q-V3Ewt8XO6dZ3hSeTUjlVzoV2P1UQBc-ZUSrFM0Kjc0nXNe0cYDka7fDfGoj9HfQctLqaeW8T0K09ppTPfCyrnmAAes~kGuVf-p3wxaVYPw__"
+                className="w-full  object-top "
+                src="https://s3-alpha-sig.figma.com/img/80ca/2127/d4f78cb78bdd31b5d81533f7a70770ff?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SW~eyTq~o5MYPeTadPct2wg5A07Y4OoMNKvvlol5QZw~67IJx0PahR-TG2mZwjejYKsEsIAUrKyd25YA8GNLJBhw7MMiHmg8HWRpv~Lpbs45859BsLccEXiOE8kIZnYkVe8WB5Npef-~xdq447RTDw9BVqkCKmqn4n11ZMayKlVV9QhxODKXGmyL65BNUy-Z1y~rJnubsy6pOjBbty01E7Q~jHclQEHvU7L9yEi9a04hoZ2RgLvqcqLKD6ZvOkTkT1gqReK6vJD~tFaEFGP16NltA0AIG01JlzdNKBea4vFWtSp7G8mRSmolBkza6qRDcOEJiEaj~wHloLD~bWIWcw__"
               />
-            </div>
-            <div className="flex justify-between">
-              <div className=" text-[#c75d15] text-sm font-bold font-['Manrope'] leading-[22.86px]">
-                Sảnh Thanh Sen
-              </div>
-              <div className="flex gap-1">
-                <span>
-                  <Watch></Watch>
-                </span>
-                <div className="text-right text-[#666666] text-base font-normal font-['Manrope'] leading-normal">
-                  11/02/2020
+              <div className="flex flex-wrap justify-between">
+                <div className=" text-[#c75d15] text-sm font-bold font-['Manrope'] leading-[22.86px]">
+                  <span>Sảnh Thanh Sen</span>
+                </div>
+                <div className="flex gap-1">
+                  <span>
+                    <Watch></Watch>
+                  </span>
+                  <div className="text-right text-[#666666] text-sm font-normal font-['Manrope'] leading-normal">
+                    11/02/2020
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>

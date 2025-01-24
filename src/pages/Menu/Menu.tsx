@@ -1,10 +1,27 @@
 import MenuItemSlider from "../../components/Menu/MenuItemSlider";
 import SideMenu from "../../components/Menu/SideMenu";
 import { getMenuSubItem } from "../../Redux/Selectors/MenuSelector";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMenu } from "../../Redux/Thunks/MenuThunk";
+import { useEffect } from "react";
+import store from "../../Redux/store";
+import { Skeleton } from "antd";
 
 export default function Menu() {
   const selectedMenuSubItem = useSelector(getMenuSubItem);
+  const dispatch: typeof store.dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchMenu());
+  }, [dispatch]);
+  if (!selectedMenuSubItem) {
+    return (
+      <div className="container h-screen">
+        <Skeleton />
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-12 bg-inherit container gap-[60px]">
       <div className="col-span-8">

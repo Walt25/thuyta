@@ -1,10 +1,10 @@
 const path = {
   home: "/",
   menu: "/menu",
-  nganSen: "/ngan-sen",
-  thuyenRong: "/thuyen-rong",
-  hoangKimSen: "/hoang-kim-sen",
-  thanhSen: "thanh-sen",
+  nganSen: "sanh/ngan-sen",
+  thuyenRong: "sanh/thuyen-rong",
+  hoangKimSen: "sanh/hoang-kim-sen",
+  thanhSen: "sanh/thanh-sen",
   conferenceRoom: "/hoi-nghi",
   promotion: "/khuyen-mai",
 };

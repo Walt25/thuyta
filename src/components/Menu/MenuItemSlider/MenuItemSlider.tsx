@@ -7,8 +7,12 @@ import {
 } from "../../../Redux/Selectors/MenuSelector";
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedMenuSubItem } from "../../../Redux/Slices/MenuSlice";
+import {
+  MenuItem,
+  setSelectedMenuSubItem,
+} from "../../../Redux/Slices/MenuSlice";
 import classNames from "classnames";
+import { useEffect, useState } from "react";
 
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
@@ -88,7 +92,7 @@ function SamplePrevArrow(props: any) {
 
 export default function MenuItemSlider() {
   const dispatch = useDispatch();
-
+  const [slidesToShow, setSlidesToShow] = useState<number>(3);
   const handleOnClick = (index: number) => {
     dispatch(setSelectedMenuSubItem(index));
   };
@@ -97,19 +101,30 @@ export default function MenuItemSlider() {
 
   console.log(selectedMenuItem);
 
+  useEffect(() => {
+    if (selectedMenuItem?.numberOfItems) {
+      setSlidesToShow(selectedMenuItem.numberOfItems);
+    }
+  }, [selectedMenuItem]);
+
+  if (!selectedMenuItem) {
+    return <div>Loading...</div>;
+  }
+
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow></SampleNextArrow>,
-    prevArrow: <SamplePrevArrow></SamplePrevArrow>,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    adaptiveHeight: true,
   };
 
   return (
     <Slider className="gift-banner" {...settings}>
-      {selectedMenuItem.items.map((item, index) => (
+      {(selectedMenuItem as MenuItem).items.map((item, index) => (
         <div
           key={index}
           className={classNames(

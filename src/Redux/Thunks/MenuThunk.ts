@@ -1,18 +1,22 @@
-// import { createAsyncThunk } from "@reduxjs/toolkit";
-// import axios from "axios";
-// import { Product } from "../slices/cartSlice";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../FireBase/firebaseConfig";
+import { MenuItem } from "../Slices/MenuSlice";
 
-// export const fetchProductsInCart = createAsyncThunk<
-//   Product[],
-//   void,
-//   { rejectValue: string }
-// >("cart/fetchProductsInCart", async (_, thunkAPI) => {
-//   try {
-//     const response = await axios.get("/api/cart/products");
-//     return response.data as Product[]; // Đảm bảo kiểu dữ liệu trả về
-//   } catch (error: any) {
-//     return thunkAPI.rejectWithValue(
-//       error.response?.data || "An error occurred"
-//     );
-//   }
-// });
+export const fetchMenu = createAsyncThunk<MenuItem[], void>(
+  "menu/fetchMenu",
+  async () => {
+    const menuCollection = collection(db, "menu");
+    const snapshot = await getDocs(menuCollection);
+    console.log(1);
+
+    // Ánh xạ dữ liệu từ Firebase sang kiểu MenuItem
+    const menuData: MenuItem[] = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...(doc.data() as Omit<MenuItem, "id">),
+    }));
+    console.log(1);
+    return menuData;
+  }
+);

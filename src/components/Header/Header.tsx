@@ -2,7 +2,8 @@ import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, MenuProps, Space } from "antd";
 import classNames from "classnames";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import path from "../../constants/path";
 
 interface Props {
   type: "white" | "black";
@@ -12,7 +13,7 @@ const items: MenuProps["items"] = [
   {
     key: "1",
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="/thuyen-rong">
+      <a target="_blank" rel="noopener noreferrer" href={`/${path.thuyenRong}`}>
         Thuyền rồng Hoàng Long - Kim Long
       </a>
     ),
@@ -20,24 +21,28 @@ const items: MenuProps["items"] = [
   {
     key: "2",
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="/ngan-sen">
-        Sảnh ngân sen
+      <a target="_blank" rel="noopener noreferrer" href={`/${path.nganSen}`}>
+        Sảnh Ngân Sen
       </a>
     ),
   },
   {
     key: "3",
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="/hoang-kim-sen">
-        Sảnh Hoàng Sen - Kim sen
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href={`/${path.hoangKimSen}`}
+      >
+        Sảnh Hoàng Sen - Kim Sen
       </a>
     ),
   },
   {
     key: "4",
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="/thanh-sen">
-        Sảnh thanh sen
+      <a target="_blank" rel="noopener noreferrer" href={`/${path.thanhSen}`}>
+        Sảnh Thanh Sen
       </a>
     ),
   },
@@ -45,7 +50,9 @@ const items: MenuProps["items"] = [
 
 export default function Header({ type }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const location = useLocation();
+  const pathname = location.pathname;
+  console.log(pathname);
   const handleShowMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
@@ -146,8 +153,17 @@ export default function Header({ type }: Props) {
           >
             <li>
               <a
-                href="#"
-                className="bg-blue-700 md:bg-transparent  block pl-3 pr-4 py-2  md:p-0 rounded"
+                href="/menu"
+                // className={
+                //   (pathname === "/menu" ? "bg-blue-700" : "") +
+                //   "md:bg-transparent  block pl-3 pr-4 py-2  md:p-0 rounded"
+                // }
+                className={classNames(
+                  "hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:bg-transparent md:hover:text-blue-700 md:p-0",
+                  {
+                    "bg-blue-500 text-[#C75D15]": pathname === "/menu",
+                  }
+                )}
                 aria-current="page"
               >
                 Thực đơn
@@ -155,7 +171,15 @@ export default function Header({ type }: Props) {
             </li>
             <li>
               <Dropdown menu={{ items }}>
-                <a onClick={(e) => e.preventDefault()}>
+                <a
+                  className={classNames(
+                    "hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:bg-transparent md:hover:text-blue-700 md:p-0",
+                    {
+                      "bg-blue-500 text-[#C75D15]": pathname.includes("sanh"),
+                    }
+                  )}
+                  onClick={(e) => e.preventDefault()}
+                >
                   <Space>
                     Sảnh tiệc
                     <DownOutlined />
@@ -165,16 +189,26 @@ export default function Header({ type }: Props) {
             </li>
             <li>
               <a
-                href="#"
-                className=" hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
+                href="/hoi-nghi"
+                className={classNames(
+                  "hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:bg-transparent md:hover:text-blue-700 md:p-0",
+                  {
+                    "bg-blue-500 text-[#C75D15]": pathname === "/hoi-nghi",
+                  }
+                )}
               >
                 Phòng hội nghị
               </a>
             </li>
             <li>
               <a
-                href="#"
-                className=" hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
+                href="/khuyen-mai"
+                className={classNames(
+                  "hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:bg-transparent md:hover:text-blue-700 md:p-0",
+                  {
+                    "bg-blue-500 text-[#C75D15]": pathname === "/khuyen-mai",
+                  }
+                )}
               >
                 Khuyến mãi tiệc cưới
               </a>
